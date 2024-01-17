@@ -25,14 +25,15 @@ namespace GrpcGreeter {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChJQcm90b3MvZ3JlZXQucHJvdG8SBWdyZWV0IhwKDEhlbGxvUmVxdWVzdBIM",
-            "CgRuYW1lGAEgASgJIh0KCkhlbGxvUmVwbHkSDwoHbWVzc2FnZRgBIAEoCTI9",
-            "CgdHcmVldGVyEjIKCFNheUhlbGxvEhMuZ3JlZXQuSGVsbG9SZXF1ZXN0GhEu",
-            "Z3JlZXQuSGVsbG9SZXBseUIOqgILR3JwY0dyZWV0ZXJiBnByb3RvMw=="));
+            "CgRuYW1lGAEgASgJIioKCkhlbGxvUmVwbHkSDwoHbWVzc2FnZRgBIAEoCRIL",
+            "CgNhZ2UYAiABKAUyPQoHR3JlZXRlchIyCghTYXlIZWxsbxITLmdyZWV0Lkhl",
+            "bGxvUmVxdWVzdBoRLmdyZWV0LkhlbGxvUmVwbHlCDqoCC0dycGNHcmVldGVy",
+            "YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::GrpcGreeter.HelloRequest), global::GrpcGreeter.HelloRequest.Parser, new[]{ "Name" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::GrpcGreeter.HelloReply), global::GrpcGreeter.HelloReply.Parser, new[]{ "Message" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::GrpcGreeter.HelloReply), global::GrpcGreeter.HelloReply.Parser, new[]{ "Message", "Age" }, null, null, null, null)
           }));
     }
     #endregion
@@ -269,6 +270,7 @@ namespace GrpcGreeter {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public HelloReply(HelloReply other) : this() {
       message_ = other.message_;
+      age_ = other.age_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -290,6 +292,18 @@ namespace GrpcGreeter {
       }
     }
 
+    /// <summary>Field number for the "age" field.</summary>
+    public const int AgeFieldNumber = 2;
+    private int age_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Age {
+      get { return age_; }
+      set {
+        age_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -306,6 +320,7 @@ namespace GrpcGreeter {
         return true;
       }
       if (Message != other.Message) return false;
+      if (Age != other.Age) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -314,6 +329,7 @@ namespace GrpcGreeter {
     public override int GetHashCode() {
       int hash = 1;
       if (Message.Length != 0) hash ^= Message.GetHashCode();
+      if (Age != 0) hash ^= Age.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -336,6 +352,10 @@ namespace GrpcGreeter {
         output.WriteRawTag(10);
         output.WriteString(Message);
       }
+      if (Age != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Age);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -350,6 +370,10 @@ namespace GrpcGreeter {
         output.WriteRawTag(10);
         output.WriteString(Message);
       }
+      if (Age != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Age);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -362,6 +386,9 @@ namespace GrpcGreeter {
       int size = 0;
       if (Message.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
+      }
+      if (Age != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Age);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -377,6 +404,9 @@ namespace GrpcGreeter {
       }
       if (other.Message.Length != 0) {
         Message = other.Message;
+      }
+      if (other.Age != 0) {
+        Age = other.Age;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -397,6 +427,10 @@ namespace GrpcGreeter {
             Message = input.ReadString();
             break;
           }
+          case 16: {
+            Age = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -414,6 +448,10 @@ namespace GrpcGreeter {
             break;
           case 10: {
             Message = input.ReadString();
+            break;
+          }
+          case 16: {
+            Age = input.ReadInt32();
             break;
           }
         }
